@@ -62,7 +62,9 @@ function M.open(opts)
 	local snapshot_buf = vim.api.nvim_create_buf(false, true)
 	vim.bo[snapshot_buf].bufhidden = "wipe"
 	vim.api.nvim_buf_set_lines(snapshot_buf, 0, -1, false, snapshot_lines)
+	vim.bo[snapshot_buf].modifiable = false
 	local snapshot_win = vim.api.nvim_open_win(snapshot_buf, false, { split = "right" })
+	vim.api.nvim_win_set_config(snapshot_win, { focusable = false })
 	vim.api.nvim_win_call(source_win, function()
 		vim.cmd("diffthis")
 	end)

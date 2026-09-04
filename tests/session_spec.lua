@@ -98,6 +98,18 @@ describe("session", function()
 		assert.are.same(src_lines, lines)
 	end)
 
+	it("the snapshot buffer is not modifiable", function()
+		setup_target()
+		local s = session.open(opts())
+		assert.is_false(vim.bo[s.buffers[3]].modifiable)
+	end)
+
+	it("the snapshot window is not focusable", function()
+		setup_target()
+		local s = session.open(opts())
+		assert.is_false(vim.api.nvim_win_get_config(s.snapshot_win).focusable)
+	end)
+
 	it("close wipes the tree and snapshot buffers", function()
 		setup_target()
 		local s = session.open(opts())

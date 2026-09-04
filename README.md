@@ -1,4 +1,4 @@
-# undodiff
+# undodiff.nvim
 
 Neovim plugin that wraps the `undotree.nvim` plugin and uses Neovim's
 native diff mode to show undo history.
